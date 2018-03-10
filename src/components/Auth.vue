@@ -34,7 +34,10 @@
                 <div class="instruction mb-2">
                   <span class="instruction-number primary white--text mr-2">1</span>
                   <span class="instruction-text">
-                    Create a new Discord app through <a class="instruction-link" href="https://discordapp.com/developers/applications/me">this link</a>
+                    Create a new Discord app through
+                    <a class="instruction-link" href="https://discordapp.com/developers/applications/me" target="_blank">
+                      this link
+                    </a>
                   </span>
                 </div>
                 <div class="instruction mb-2">
@@ -63,7 +66,13 @@
                 </div>
               </div>
 
-              <p> You also need to the ID for your Discord server. You can follow the instructions <a class="instruction-link" href="https://support.discordapp.com/hc/en-us/articles/206346498-Where-can-I-find-my-User-Server-Message-ID-">here</a>.</p>
+              <p>
+                You also need to the ID for your Discord server. You can follow the instructions
+                <a class="instruction-link" href="https://support.discordapp.com/hc/en-us/articles/206346498-Where-can-I-find-my-User-Server-Message-ID-" target="_blank">
+                  here
+                </a>
+                .
+              </p>
             </div>
             <v-layout>
               <v-flex xs12 sm6 md4>
