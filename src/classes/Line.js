@@ -1,4 +1,3 @@
-import Discord from 'discord.js';
 import Server from './Server';
 import Channel from './Channel';
 import User from './User';

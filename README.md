@@ -1,4 +1,4 @@
-# ecderya
+# Roll the Bones
 
 > A simple roll generator for D&D, integrates with Discord
 
