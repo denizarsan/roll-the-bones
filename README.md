@@ -1,6 +1,8 @@
 # Roll the Bones
 
 > A simple roll generator for D&D, integrates with Discord
+> https://roll-the-bones.firebaseapp.com/
+
 
 ## Build Setup
 
