@@ -71,7 +71,6 @@
                 <a class="instruction-link" href="https://support.discordapp.com/hc/en-us/articles/206346498-Where-can-I-find-my-User-Server-Message-ID-" target="_blank">
                   here
                 </a>
-                .
               </p>
             </div>
             <v-layout>
