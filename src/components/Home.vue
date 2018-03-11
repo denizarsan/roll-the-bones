@@ -57,7 +57,12 @@ export default {
       localStorage.setItem('rolls', JSON.stringify(this.rolls));
     },
     sendRoll(roll) {
-      this.line.send(`${roll.toString()} :robot: ${this.line.user.username} | ${roll.name}`);
+      if (roll.canBeSent) {
+        this.line.send(`${roll.toString()} :robot: ${this.line.user.username} | ${roll.name}`);
+        roll.canerproof();
+      } else {
+        this.notification = 'Please wait 5 seconds before sending the same roll again.';
+      }
     },
     copyRoll(roll) {
       this.$copyText(roll.toString()).then((e) => {

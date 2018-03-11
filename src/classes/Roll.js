@@ -12,6 +12,7 @@ export default class Roll {
       this.name = name;
       this.dices = dices.slice();
     }
+    this.canBeSent = true;
   }
 
   addDice(dice) {
@@ -20,6 +21,11 @@ export default class Roll {
 
   removeDice(dice) {
     this.dices.splice(this.dices.indexOf(dice), 1);
+  }
+
+  canerproof() {
+    this.canBeSent = false;
+    setTimeout(() => { this.canBeSent = true; }, 5000);
   }
 
   toString() {
