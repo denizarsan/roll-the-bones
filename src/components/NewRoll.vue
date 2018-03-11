@@ -38,24 +38,26 @@
                 </v-btn>
               </v-subheader>
               <v-container class="py-0">
-                <v-layout wrap>
-                  <v-flex xs4>
-                    <div class="counter input-group">
-                      <label>Count</label>
-                      <v-btn small class="counter-btn" icon :disabled="dice.count < 2" @click="dice.count -= 1">
-                        <v-icon color="secondary">remove_circle</v-icon>
-                      </v-btn>
-                      <div class="counter-text subheading">{{ dice.count }}</div>
-                      <v-btn small class="counter-btn" icon :disabled="dice.count > 4" @click="dice.count += 1">
-                        <v-icon color="secondary">add_circle</v-icon>
-                      </v-btn>
-                    </div>
+                <v-layout class="counter input-group" wrap row>
+                  <v-flex xs12>
+                    <label>Count</label>
                   </v-flex>
-                  <v-flex xs8>
+                  <v-layout>
+                    <v-btn small class="counter-btn ml-0" icon :disabled="dice.count < 2" @click="dice.count -= 1">
+                      <v-icon color="secondary">remove_circle</v-icon>
+                    </v-btn>
+                    <div class="counter-text subheading">{{ dice.count }}</div>
+                    <v-btn small class="counter-btn mr-0" icon :disabled="dice.count > 9" @click="dice.count += 1">
+                      <v-icon color="secondary">add_circle</v-icon>
+                    </v-btn>
+                  </v-layout>
+                </v-layout>
+                <v-layout>
+                  <v-flex xs12>
                     <v-radio-group v-model="dice.value" label="Kind" row>
                       <v-radio
                         color="secondary"
-                        v-for="d in ['d4', 'd6', 'd8', 'd12', 'd20']"
+                        v-for="d in ['d4', 'd6', 'd8', 'd10', 'd12', 'd20']"
                         :key="d"
                         :label="d"
                         :value="d"
@@ -63,7 +65,9 @@
                       </v-radio>
                     </v-radio-group>
                   </v-flex>
-                  <v-flex xs12>
+                </v-layout>
+                <v-layout>
+                  <v-flex xs10>
                     <v-slider
                       label="Modifier"
                       color="secondary"
@@ -74,6 +78,9 @@
                       ticks
                       thumb-label>
                     </v-slider>
+                  </v-flex>
+                  <v-flex xs2 class="modifier-value">
+                    <div class="subheading">{{ dice.modifier }}</div>
                   </v-flex>
                 </v-layout>
               </v-container>
@@ -130,5 +137,12 @@ export default {
 .counter-text {
   display: flex;
   align-items: center;
+}
+
+.modifier-value {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(0,0,0,.54);
 }
 </style>
