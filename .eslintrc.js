@@ -10,7 +10,7 @@ module.exports = {
     browser: true,
   },
   globals: {
-    "Discord": true
+    'Discord': true
   },
   extends: 'airbnb-base',
   // required to lint *.vue files

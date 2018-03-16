@@ -3,10 +3,12 @@
     <v-content>
       <v-toolbar dark color="primary">
         <v-toolbar-title>Roll the Bones</v-toolbar-title>
-          <v-spacer></v-spacer>
-          <auth @line-connected="update" @line-disconnected="update" @line-ready="update"/>
+        <v-spacer></v-spacer>
+        <auth></auth>
       </v-toolbar>
-      <home :line="line"/>
+      <v-container>
+        <home></home>
+      </v-container>
     </v-content>
   </v-app>
 </template>
@@ -20,16 +22,6 @@ export default {
   components: {
     Home,
     Auth,
-  },
-  data() {
-    return {
-      line: null,
-    };
-  },
-  methods: {
-    update(line) {
-      this.line = line;
-    },
   },
 };
 </script>

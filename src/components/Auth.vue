@@ -3,13 +3,15 @@
     <v-btn icon @click="open()" v-if="!line.isReady && !isConnecting">
       <v-icon>person</v-icon>
     </v-btn>
-    <v-progress-circular v-if="isConnecting" indeterminate color="accent" :size="24"></v-progress-circular>
-    <div v-if="line.isReady">
-      {{ line.user.username }} #{{ line.user.discriminator }} | {{ line.server.name }} | {{ line.channel.name }}
+    <v-progress-circular v-if="isConnecting && !line.isReady" indeterminate color="accent" :size="24"></v-progress-circular>
+    <v-layout v-if="line.isReady" align-center>
+      <div class="hidden-xs-only">
+        {{ line.user.username }} #{{ line.user.discriminator }} | {{ line.server.name }} | {{ line.channel.name }}
+      </div>
       <v-btn icon @click="disconnect()">
         <v-icon>exit_to_app</v-icon>
       </v-btn>
-    </div>
+    </v-layout>
     <v-dialog v-model="isOpen" fullscreen transition="dialog-bottom-transition">
       <v-card>
         <v-toolbar dark color="secondary">
@@ -152,18 +154,21 @@
 </template>
 
 <script>
-import Line from '../classes/Line';
-
-const PERIOD = 60000;
-const DELAY = 1000;
+import { mapState, mapMutations } from 'vuex';
+import { AUTH_PERIOD, AUTH_DELAY } from '@/utils/constants';
+import Line from '@/classes/Line';
 
 export default {
   name: 'Auth',
+  computed: {
+    ...mapState({
+      line: state => state.line,
+    }),
+  },
   data() {
     return {
       isOpen: false,
       isConnecting: false,
-      line: new Line(),
       token: '',
       id: '',
       channels: [],
@@ -174,8 +179,8 @@ export default {
       pin: '',
       pinInterval: {},
       pinTimer: 100,
-      pinDelay: DELAY,
-      pinPeriod: PERIOD,
+      pinDelay: AUTH_DELAY,
+      pinPeriod: AUTH_PERIOD,
     };
   },
   created() {
@@ -185,15 +190,14 @@ export default {
       this.token = data.token;
       this.id = data.id;
       this.line.connect(data.token, data.id).then(() => {
-        this.$emit('line-connected', this.line);
         this.isConnecting = false;
         this.line.channel = data.channel;
         this.line.user = data.user;
-        this.$emit('line-ready', this.line);
       });
     }
   },
   methods: {
+    ...mapMutations(['updateLine']),
     open() {
       this.isOpen = true;
     },
@@ -212,7 +216,7 @@ export default {
       this.line.connect(this.token, this.id).then(() => {
         this.channels = this.line.channels;
         this.users = this.line.users;
-        this.$emit('line-connected', this.line);
+        this.updateLine({ line: this.line });
         this.isConnecting = false;
         this.goTo(2);
       });
@@ -221,13 +225,12 @@ export default {
       clearInterval(this.pinInterval);
       this.pinTimer = 100;
       this.line.disconnect();
-      this.line = new Line();
+      this.updateLine({ line: new Line() });
       this.channels = [];
       this.users = [];
       this.channel = null;
       this.user = null;
       this.step = 1;
-      this.$emit('line-disconnected', this.line);
       localStorage.removeItem('auth');
     },
     generate() {
@@ -249,7 +252,7 @@ export default {
           message.reply('Nice to meet you!');
           this.line.user = this.user;
           this.line.bot.removeAllListeners('message');
-          this.$emit('line-ready', this.line);
+          this.updateLine({ line: this.line });
           this.step = 4;
           clearInterval(this.pinInterval);
 

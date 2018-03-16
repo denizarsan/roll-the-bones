@@ -15,7 +15,6 @@ export default class Line {
     return this.bot.user !== null;
   }
 
-
   get isReady() {
     return this.bot.user !== null && this.channel !== null && this.user !== null;
   }
@@ -44,6 +43,10 @@ export default class Line {
 
   send(message) {
     this.bot.guilds.get(this.server.id).channels.get(this.channel.id).send(message);
+  }
+
+  sendRoll(roll) {
+    this.send(`${roll.toString()} :robot: ${this.user.username} | ${roll.name}`);
   }
 
 }

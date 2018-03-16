@@ -1,34 +1,41 @@
-import Dice from './Dice';
-
-const ROLL_NAME_DEFAULT = '';
-const ROLL_STRING_BASE = '!roll';
+import { signedSpaced } from '@/utils/utils';
+import {
+  ROLL_NAME_DEFAULT,
+  ROLL_DICES_DEFAULT,
+  ROLL_MODIFIER_DEFAULT,
+  ROLL_STRING_BASE,
+} from '@/utils/constants';
 
 export default class Roll {
-  constructor(name, dices) {
+  constructor(name, dices, modifier) {
     if (!arguments.length) {
       this.name = ROLL_NAME_DEFAULT;
-      this.dices = [new Dice()];
+      this.dices = ROLL_DICES_DEFAULT.map(dice => Object.assign({}, dice));
+      this.modifier = ROLL_MODIFIER_DEFAULT;
     } else {
       this.name = name;
-      this.dices = dices.slice();
+      this.dices = dices.map(dice => Object.assign({}, dice));
+      this.modifier = modifier;
     }
-    this.canBeSent = true;
   }
 
-  addDice(dice) {
-    this.dices.push(dice);
+  get modifierToString() {
+    return signedSpaced(this.modifier);
   }
 
-  removeDice(dice) {
-    this.dices.splice(this.dices.indexOf(dice), 1);
+  get isComplete() {
+    return !!this.name && this.dices.some(dice => dice.count > 0);
   }
 
-  canerproof() {
-    this.canBeSent = false;
-    setTimeout(() => { this.canBeSent = true; }, 5000);
+  get isRollable() {
+    return this.dices.some(dice => dice.count > 0);
   }
 
   toString() {
-    return `${ROLL_STRING_BASE} ${this.dices.map(dice => dice.toString()).join(' + ')}`;
+    const dicesStr = this.dices.filter(dice => dice.count > 0)
+                          .map(dice => `${dice.count}${dice.kind}`)
+                          .join(' + ');
+
+    return this.isRollable ? `${ROLL_STRING_BASE} ${dicesStr} ${this.modifierToString}` : null;
   }
 }
