@@ -9,6 +9,7 @@ export default class Line {
     this.users = [];
     this.channel = null;
     this.user = null;
+    this.isConnecting = false;
   }
 
   get isOnline() {
@@ -19,7 +20,12 @@ export default class Line {
     return this.bot.user !== null && this.channel !== null && this.user !== null;
   }
 
+  get isConnected() {
+    return this.bot.user !== null && this.channel !== null && this.user !== null;
+  }
+
   connect(token, id) {
+    this.isConnecting = true;
     return this.bot.login(token).then(() => {
       const guild = this.bot.guilds.get(id);
 
@@ -32,12 +38,18 @@ export default class Line {
         .map(tuple => tuple[1])
         .filter(member => !member.user.bot)
         .map(member => new User(member.user.id, member.user.username, member.user.discriminator));
+
+      this.isConnecting = false;
     });
   }
 
   disconnect() {
     if (this.isOnline) {
       this.bot.destroy();
+      this.channels = [];
+      this.users = [];
+      this.channel = null;
+      this.user = null;
     }
   }
 
@@ -48,5 +60,4 @@ export default class Line {
   sendRoll(roll) {
     this.send(`${roll.toString()} :robot: ${this.user.username} | ${roll.name}`);
   }
-
 }

@@ -11,6 +11,7 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "mdi": "^2.1.99",
     "vue": "^2.5.2",
     "vue-clipboard2": "0.0.9",
     "vuetify": "^1.0.0",

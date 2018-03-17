@@ -40,8 +40,6 @@
         <saving-throws></saving-throws>
       </v-flex>
     </v-layout>
-
-    <notification></notification>
   </div>
 </template>
 
@@ -56,7 +54,7 @@ import AttackHit from './AttackHit';
 import SavingThrows from './SavingThrows';
 import Skills from './Skills';
 import Rolls from './Rolls';
-import Notification from './Notification';
+
 
 export default {
   name: 'Home',
@@ -71,7 +69,6 @@ export default {
     SavingThrows,
     Skills,
     Rolls,
-    Notification,
   },
 };
 </script>

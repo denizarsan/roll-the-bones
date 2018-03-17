@@ -49,6 +49,8 @@ const load = () => {
 };
 
 const state = {
+  drawer: { show: false },
+  auth: { show: false, step: 0 },
   character: load(),
   line: new Line(),
   notification: { show: false, text: null },
@@ -59,6 +61,11 @@ const state = {
 const mutations = {
   updateLine(state, payload) {
     state.line = payload.line;
+  },
+  disconnectLine(state) {
+    state.line.disconnect();
+    state.auth.step = 1;
+    localStorage.removeItem('auth');
   },
   changeName(state, payload) {
     state.character.name = payload.name;
@@ -134,7 +141,18 @@ const mutations = {
     state.notification.show = false;
     state.notification.text = null;
   },
-
+  toggleDrawer(state) {
+    state.drawer.show = !state.drawer.show;
+  },
+  showAuth(state) {
+    state.auth.show = true;
+  },
+  hideAuth(state) {
+    state.auth.show = false;
+  },
+  updateAuthStep(state, payload) {
+    state.auth.step = payload.step;
+  },
 };
 
 export default new Vuex.Store({ state, mutations });

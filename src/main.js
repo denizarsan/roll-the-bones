@@ -4,6 +4,7 @@ import VuetifyColors from 'vuetify/es5/util/colors';
 import VueClipboard from 'vue-clipboard2';
 
 import 'vuetify/dist/vuetify.min.css';
+import 'mdi/css/materialdesignicons.min.css';
 
 import App from './App';
 import store from './store/store';
