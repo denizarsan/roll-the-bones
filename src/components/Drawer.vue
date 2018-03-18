@@ -49,6 +49,17 @@
           </v-list-tile-title>
         </v-list-tile-content>
       </v-list-tile>
+
+      <v-list-tile ripple @click="toggleEditMode">
+        <v-list-tile-action>
+          <v-icon>{{ isEditable ? 'lock_open' : 'lock' }}</v-icon>
+        </v-list-tile-action>
+        <v-list-tile-content>
+          <v-list-tile-title>
+            {{ isEditable ? 'Lock Sheet' : 'Edit Sheet' }}
+          </v-list-tile-title>
+        </v-list-tile-content>
+      </v-list-tile>
     </v-list>
   </v-navigation-drawer>
 </template>
@@ -62,10 +73,11 @@ export default {
     ...mapState({
       drawer: state => state.drawer,
       line: state => state.line,
+      isEditable: state => state.isEditable,
     }),
   },
   methods: {
-    ...mapMutations(['showAuth', 'disconnectLine']),
+    ...mapMutations(['showAuth', 'disconnectLine', 'toggleEditMode']),
   },
 };
 </script>

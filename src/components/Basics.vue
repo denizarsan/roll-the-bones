@@ -1,6 +1,6 @@
 <template>
   <v-flex class="property white elevation-1 pa-3">
-    <v-btn color="deep-purple" class="property-edit my-0 mx-0" absolute right flat icon @click="edit = !edit">
+    <v-btn v-if="isEditable" color="deep-purple" class="property-edit my-0 mx-0" absolute right flat icon @click="edit = !edit">
       <v-icon color="deep-purple">{{ edit ? 'check' : 'edit' }}</v-icon>
     </v-btn>
     <div class="display-1 text-xs-center">
@@ -49,12 +49,13 @@
 import { mapState, mapMutations } from 'vuex';
 
 export default {
-  name: 'NameLevelClass',
+  name: 'Basics',
   computed: {
     ...mapState({
       name: state => state.character.name,
       level: state => state.character.level,
       klass: state => state.character.class,
+      isEditable: state => state.isEditable,
     }),
   },
   data() {

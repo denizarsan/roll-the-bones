@@ -11,10 +11,10 @@
     <auth></auth>
     <v-content>
       <v-container>
-        <home></home>
-        <notification></notification>
+        <sheet></sheet>
       </v-container>
     </v-content>
+    <notification></notification>
   </v-app>
 </template>
 
@@ -23,7 +23,7 @@ import { mapMutations } from 'vuex';
 
 import Drawer from './components/Drawer';
 import Auth from './components/Auth';
-import Home from './components/Home';
+import Sheet from './components/Sheet';
 import Notification from './components/Notification';
 
 export default {
@@ -31,7 +31,7 @@ export default {
   components: {
     Drawer,
     Auth,
-    Home,
+    Sheet,
     Notification,
   },
   methods: {

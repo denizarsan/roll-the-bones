@@ -3,7 +3,7 @@
     <v-flex v-for="ability in abilities" :key="ability.name" xs6 sm4 md2>
       <div class="ability white elevation-1 pa-3">
         <v-layout align-center column>
-          <v-btn color="deep-purple" class="ability-edit my-0 mx-0" absolute right small flat icon @click="inEditMode[ability.name] = !inEditMode[ability.name]">
+          <v-btn v-if="isEditable" color="deep-purple" class="ability-edit my-0 mx-0" absolute right small flat icon @click="inEditMode[ability.name] = !inEditMode[ability.name]">
             <v-icon small color="deep-purple">{{ inEditMode[ability.name] ? 'check' : 'edit' }}</v-icon>
           </v-btn>
           <div class="ability-name title my-2">
@@ -53,6 +53,7 @@ export default {
   computed: {
     ...mapState({
       abilities: state => state.character.abilities,
+      isEditable: state => state.isEditable,
     }),
   },
   data() {

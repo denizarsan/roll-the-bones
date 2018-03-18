@@ -54,6 +54,7 @@ const state = {
   character: load(),
   line: new Line(),
   notification: { show: false, text: null },
+  isEditable: true,
 };
 
 
@@ -152,6 +153,9 @@ const mutations = {
   },
   updateAuthStep(state, payload) {
     state.auth.step = payload.step;
+  },
+  toggleEditMode(state) {
+    state.isEditable = !state.isEditable;
   },
 };
 
