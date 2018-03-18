@@ -55,6 +55,7 @@ const state = {
   line: new Line(),
   notification: { show: false, text: null },
   isEditable: true,
+  loadSave: { show: false },
 };
 
 
@@ -141,6 +142,16 @@ const mutations = {
   hideNotification(state) {
     state.notification.show = false;
     state.notification.text = null;
+  },
+  showLoadSave(state) {
+    state.loadSave.show = true;
+  },
+  hideLoadSave(state) {
+    state.loadSave.show = false;
+  },
+  loadCharacter(state, payload) {
+    state.character = payload.character;
+    save(state.character);
   },
   toggleDrawer(state) {
     state.drawer.show = !state.drawer.show;

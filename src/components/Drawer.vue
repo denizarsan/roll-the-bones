@@ -39,13 +39,13 @@
         </v-list-tile-content>
       </v-list-tile>
 
-      <v-list-tile ripple @click="" disabled>
+      <v-list-tile ripple @click="showLoadSave">
         <v-list-tile-action>
           <v-icon>import_export</v-icon>
         </v-list-tile-action>
         <v-list-tile-content>
           <v-list-tile-title>
-            Import / Export (Coming Soon&trade;)
+            Import / Export
           </v-list-tile-title>
         </v-list-tile-content>
       </v-list-tile>
@@ -77,7 +77,7 @@ export default {
     }),
   },
   methods: {
-    ...mapMutations(['showAuth', 'disconnectLine', 'toggleEditMode']),
+    ...mapMutations(['showAuth', 'showLoadSave', 'disconnectLine', 'toggleEditMode']),
   },
 };
 </script>

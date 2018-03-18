@@ -9,6 +9,7 @@
       </v-btn>
     </v-toolbar>
     <auth></auth>
+    <load-save></load-save>
     <v-content>
       <v-container>
         <sheet></sheet>
@@ -21,17 +22,19 @@
 <script>
 import { mapMutations } from 'vuex';
 
+import Sheet from './components/Sheet';
 import Drawer from './components/Drawer';
 import Auth from './components/Auth';
-import Sheet from './components/Sheet';
+import LoadSave from './components/LoadSave';
 import Notification from './components/Notification';
 
 export default {
   name: 'App',
   components: {
+    Sheet,
     Drawer,
     Auth,
-    Sheet,
+    LoadSave,
     Notification,
   },
   methods: {
