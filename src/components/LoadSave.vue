@@ -66,7 +66,7 @@ export default {
   methods: {
     ...mapMutations(['showNotification', 'hideLoadSave', 'loadCharacter']),
     copy() {
-      this.$copyText(this.encode(this.character)).then(() => {
+      this.$copyText(this.encode(JSON.stringify(this.character))).then(() => {
         this.showNotification({ text: 'Copied character details to clipboard.' });
       }, () => {
         this.showNotification({ text: 'Failed to copy text to clipboard.' });
