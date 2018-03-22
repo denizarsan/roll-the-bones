@@ -49,7 +49,7 @@
 <script>
 import { mapGetters, mapMutations } from 'vuex';
 import { signed, signedSpaced } from '@/utils/utils';
-import RollCard from './compoenents/Card';
+import RollCard from './components/RollCard';
 
 export default {
   name: 'RollCards',

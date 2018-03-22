@@ -78,7 +78,7 @@
 
 <script>
 import { mapMutations } from 'vuex';
-import Roll from '../classes/Roll';
+import Roll from '@/classes/Roll';
 
 export default {
   name: 'NewRoll',

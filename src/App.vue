@@ -54,3 +54,17 @@ export default {
   },
 };
 </script>
+
+<style>
+.appear-enter-active {
+  animation: appear .5s;
+}
+.appear-leave-active {
+  animation: appear .5s reverse;
+}
+
+@keyframes appear {
+  0%    { transform: scale(0); }
+  100%  { transform: scale(1); }
+}
+</style>

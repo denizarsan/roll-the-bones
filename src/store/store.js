@@ -62,7 +62,6 @@ const getters = {
   drawer: state => state.drawer,
   auth: state => state.auth,
   character: state => state.character,
-  abilities: state => state.character.abilities,
   line: state => state.line,
   notification: state => state.notification,
   isEditable: state => state.isEditable,

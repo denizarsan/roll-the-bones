@@ -1,9 +1,9 @@
 <template>
   <v-layout justify-space-between wrap>
     <v-flex v-for="ability in character.abilities" :key="ability.name" xs6 sm4 md2>
-      <div class="ability white elevation-1 pa-3">
+      <div class="white elevation-1 pa-3">
         <v-layout align-center column>
-          <div class="ability-name title my-2">
+          <div class="title my-2">
             {{ ability.name }}
           </div>
           <v-layout>
@@ -18,7 +18,7 @@
                 <v-icon color="secondary">remove_circle</v-icon>
               </v-btn>
             </transition>
-            <div class="ability-value subheading my-2">
+            <div class="subheading my-2">
               {{ ability.value }}
             </div>
             <transition name="appear">
@@ -33,7 +33,7 @@
               </v-btn>
             </transition>
           </v-layout>
-          <div class="ability-modifier">
+          <div>
             ({{ ability.modifierToString }})
           </div>
         </v-layout>
@@ -62,25 +62,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-.ability {
-  position: relative;
-}
-
-.ability-edit {
-  top: 20px;
-}
-
-.appear-enter-active {
-  animation: appear .5s;
-}
-.appear-leave-active {
-  animation: appear .5s reverse;
-}
-
-@keyframes appear {
-  0%    { transform: scale(0); }
-  100%  { transform: scale(1); }
-}
-</style>

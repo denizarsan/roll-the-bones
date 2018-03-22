@@ -5,16 +5,20 @@
         {{ title }}
       </div>
       <v-layout align-center>
-        <v-btn small icon v-if="editable" @click="$emit('decrement')" :disabled="isDecrementDisabled">
-          <v-icon color="secondary">remove_circle</v-icon>
-        </v-btn>
+        <transition name="appear">
+          <v-btn small icon v-if="editable" @click="$emit('decrement')" :disabled="isDecrementDisabled">
+            <v-icon color="secondary">remove_circle</v-icon>
+          </v-btn>
+        </transition>
         <div class="subheading my-2">
           <slot name="value" v-if="!value"/>
           <template v-else>{{value}}</template>
         </div>
-        <v-btn small icon v-if="editable" @click="$emit('increment')" :disabled="isIncrementDisabled">
-          <v-icon color="secondary">add_circle</v-icon>
-        </v-btn>
+        <transition name="appear">
+          <v-btn small icon v-if="editable" @click="$emit('increment')" :disabled="isIncrementDisabled">
+            <v-icon color="secondary">add_circle</v-icon>
+          </v-btn>
+        </transition>
       </v-layout>
       <v-layout justify-center>
         <v-btn color="primary" @click="$emit('copy')" small flat icon>
