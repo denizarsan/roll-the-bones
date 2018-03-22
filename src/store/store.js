@@ -54,10 +54,20 @@ const state = {
   character: load(),
   line: new Line(),
   notification: { show: false, text: null },
-  isEditable: true,
+  isEditable: false,
   loadSave: { show: false },
 };
 
+const getters = {
+  drawer: state => state.drawer,
+  auth: state => state.auth,
+  character: state => state.character,
+  abilities: state => state.character.abilities,
+  line: state => state.line,
+  notification: state => state.notification,
+  isEditable: state => state.isEditable,
+  loadSave: state => state.loadSave,
+};
 
 /* eslint no-shadow: [2, { "allow": ["state"] }] */
 const mutations = {
@@ -170,4 +180,4 @@ const mutations = {
   },
 };
 
-export default new Vuex.Store({ state, mutations });
+export default new Vuex.Store({ state, getters, mutations });

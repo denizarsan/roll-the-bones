@@ -1,11 +1,15 @@
 <template>
   <v-flex class="property white elevation-1 pa-3">
     <div v-if="!isEditable" class="display-1 text-xs-center my-3">
-      {{ name }}, Lv. {{ level }} {{ klass }}
+      {{ character.name }}, Lv. {{ character.level }} {{ character.class }}
     </div>
     <v-layout v-else align-center>
       <v-flex xs4>
-        <v-text-field label="Name" :value="name" @input="updateName"></v-text-field>
+        <v-text-field
+          label="Name"
+          :value="character.name"
+          @input="updateName">
+      </v-text-field>
       </v-flex>
       <v-flex xs4>
         <v-layout align-center justify-center>
@@ -13,17 +17,17 @@
           <v-btn
             small icon
             @click.native="decrementLevel"
-            :disabled="level < 2"
+            :disabled="character.level < 2"
           >
             <v-icon color="secondary">remove_circle</v-icon>
           </v-btn>
           <div class="subheading my-2">
-            {{ level }}
+            {{ character.level }}
           </div>
           <v-btn
             small icon
             @click.native="incrementLevel"
-            :disabled="level > 19"
+            :disabled="character.level > 19"
           >
             <v-icon color="secondary">add_circle</v-icon>
           </v-btn>
@@ -32,7 +36,7 @@
       <v-flex xs4>
         <v-select
           :items="classes"
-          :value="klass"
+          :value="character.class"
           @input="updateClass"
           label="Class"
           single-line
@@ -43,17 +47,12 @@
 </template>
 
 <script>
-import { mapState, mapMutations } from 'vuex';
+import { mapGetters, mapMutations } from 'vuex';
 
 export default {
   name: 'Basics',
   computed: {
-    ...mapState({
-      name: state => state.character.name,
-      level: state => state.character.level,
-      klass: state => state.character.class,
-      isEditable: state => state.isEditable,
-    }),
+    ...mapGetters(['character', 'isEditable']),
   },
   data() {
     return {

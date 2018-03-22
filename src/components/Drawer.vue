@@ -54,15 +54,12 @@
 </template>
 
 <script>
-import { mapState, mapMutations } from 'vuex';
+import { mapGetters, mapMutations } from 'vuex';
 
 export default {
   name: 'Drawer',
   computed: {
-    ...mapState({
-      drawer: state => state.drawer,
-      line: state => state.line,
-    }),
+    ...mapGetters(['drawer', 'line']),
   },
   methods: {
     ...mapMutations(['showAuth', 'showLoadSave', 'disconnectLine', 'toggleEditMode']),

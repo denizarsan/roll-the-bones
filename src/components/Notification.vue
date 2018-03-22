@@ -6,14 +6,12 @@
 </template>
 
 <script>
-import { mapState, mapMutations } from 'vuex';
+import { mapGetters, mapMutations } from 'vuex';
 
 export default {
   name: 'Notification',
   computed: {
-    ...mapState({
-      notification: state => state.notification,
-    }),
+    ...mapGetters(['notification']),
   },
   methods: {
     ...mapMutations(['hideNotification']),

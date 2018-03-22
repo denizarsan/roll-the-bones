@@ -102,26 +102,27 @@
 </template>
 
 <script>
-import { mapState, mapMutations } from 'vuex';
+import { mapGetters, mapMutations } from 'vuex';
 import { signed, signedSpaced } from '@/utils/utils';
 
 export default {
   name: 'RollCards',
   computed: {
-    ...mapState({
-      line: state => state.line,
-      isEditable: state => state.isEditable,
-      hitDice: state => state.character.hitDice,
-      hitDiceRoll: state => state.character.hitDiceRoll,
-      initiative: state => state.character.initiative,
-      initiativeRoll: state => state.character.initiativeRoll,
-      initiativeBonus: state => state.character.initiativeBonus,
-      spellHit: state => state.character.spellHit,
-      spellHitRoll: state => state.character.spellHitRoll,
-      spellHitBonus: state => state.character.spellHitBonus,
-      attackHitBonus: state => state.character.attackHitBonus,
-      attackHitRoll: state => state.character.attackHitRoll,
-    }),
+    ...mapGetters([
+      'line',
+      'isEditable',
+      'character',
+    ]),
+    hitDice() { return this.character.hitDice; },
+    hitDiceRoll() { return this.character.hitDiceRoll; },
+    initiative() { return this.character.initiative; },
+    initiativeRoll() { return this.character.initiativeRoll; },
+    initiativeBonus() { return this.character.initiativeBonus; },
+    spellHit() { return this.character.spellHit; },
+    spellHitRoll() { return this.character.spellHitRoll; },
+    spellHitBonus() { return this.character.spellHitBonus; },
+    attackHitBonus() { return this.character.attackHitBonus; },
+    attackHitRoll() { return this.character.attackHitRoll; },
   },
   data() {
     return {

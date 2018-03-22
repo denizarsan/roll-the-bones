@@ -86,21 +86,23 @@
 </template>
 
 <script>
-import { mapState, mapMutations } from 'vuex';
+import { mapGetters, mapMutations } from 'vuex';
 import NewRoll from './NewRoll';
 
 export default {
   name: 'RollLists',
   components: { NewRoll },
   computed: {
-    ...mapState({
-      line: state => state.line,
-      isEditable: state => state.isEditable,
-      skills: state => state.character.skills,
-      skillRolls: state => state.character.skillRolls,
-      rolls: state => state.character.rolls,
-      savingThrows: state => state.character.savingThrows,
-    }),
+    ...mapGetters([
+      'line',
+      'isEditable',
+      'character',
+    ]),
+    skills() { return this.character.skills; },
+    skillRolls() { return this.character.skillRolls; },
+    rolls() { return this.character.rolls; },
+    savingThrows() { return this.character.savingThrows; },
+
   },
   data() {
     return {

@@ -1,6 +1,6 @@
 <template>
   <v-layout justify-space-between wrap>
-    <v-flex v-for="ability in abilities" :key="ability.name" xs6 sm4 md2>
+    <v-flex v-for="ability in character.abilities" :key="ability.name" xs6 sm4 md2>
       <div class="ability white elevation-1 pa-3">
         <v-layout align-center column>
           <div class="ability-name title my-2">
@@ -43,21 +43,13 @@
 </template>
 
 <script>
-import { mapState, mapMutations } from 'vuex';
+import { mapGetters,
+ mapMutations } from 'vuex';
 
 export default {
   name: 'Abilities',
   computed: {
-    ...mapState({
-      abilities: state => state.character.abilities,
-      isEditable: state => state.isEditable,
-    }),
-  },
-  data() {
-    const keyTuples = this.$store.state.character.abilities.map(ability => [ability.name, false]);
-    return {
-      inEditMode: Object.assign(...keyTuples.map(tuple => ({ [tuple[0]]: tuple[1] }))),
-    };
+    ...mapGetters(['character', 'isEditable']),
   },
   methods: {
     ...mapMutations(['incrementAbility', 'decrementAbility']),

@@ -1,5 +1,5 @@
 <template>
-  <v-dialog v-model="show" fullscreen transition="dialog-bottom-transition">
+  <v-dialog v-model="loadSave.show" fullscreen transition="dialog-bottom-transition">
     <v-card>
       <v-toolbar dark color="secondary">
         <v-btn icon @click="hideLoadSave" dark>
@@ -47,15 +47,13 @@
 </template>
 
 <script>
-import { mapState, mapMutations } from 'vuex';
+import { mapGetters, mapMutations } from 'vuex';
 import Character from '@/classes/Character';
 
 export default {
   name: 'LoadSave',
   computed: {
-    ...mapState({
-      show: state => state.loadSave.show,
-    }),
+    ...mapGetters(['loadSave']),
   },
   data() {
     return {

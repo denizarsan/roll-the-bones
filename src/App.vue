@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import { mapState, mapMutations } from 'vuex';
+import { mapGetters, mapMutations } from 'vuex';
 
 import Sheet from './components/Sheet';
 import Drawer from './components/Drawer';
@@ -41,9 +41,7 @@ export default {
     Notification,
   },
   computed: {
-    ...mapState({
-      isEditable: state => state.isEditable,
-    }),
+    ...mapGetters(['isEditable']),
   },
   methods: {
     ...mapMutations(['toggleDrawer', 'toggleEditMode', 'showNotification']),
