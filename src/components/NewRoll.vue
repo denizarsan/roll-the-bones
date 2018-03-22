@@ -55,7 +55,6 @@
                   :step="1"
                 ></v-slider>
               </v-flex>
-              </v-layout>
             </v-layout>
             <v-layout wrap>
               <v-flex xs12 class="subheading">Result</v-flex>

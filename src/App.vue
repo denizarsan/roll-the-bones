@@ -4,6 +4,9 @@
     <v-toolbar dark color="primary" dense fixed clipped-right app>
       <v-toolbar-title>Roll the Bones</v-toolbar-title>
       <v-spacer></v-spacer>
+      <v-btn icon @click="toggleEdit">
+        <v-icon>{{ isEditable ? 'lock_open' : 'lock' }}</v-icon>
+      </v-btn>
       <v-btn icon @click="toggleDrawer">
         <v-icon>menu</v-icon>
       </v-btn>
@@ -20,7 +23,7 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex';
+import { mapState, mapMutations } from 'vuex';
 
 import Sheet from './components/Sheet';
 import Drawer from './components/Drawer';
@@ -37,8 +40,19 @@ export default {
     LoadSave,
     Notification,
   },
+  computed: {
+    ...mapState({
+      isEditable: state => state.isEditable,
+    }),
+  },
   methods: {
-    ...mapMutations(['toggleDrawer']),
+    ...mapMutations(['toggleDrawer', 'toggleEditMode', 'showNotification']),
+    toggleEdit() {
+      this.toggleEditMode();
+      if (!this.isEditable) {
+        this.showNotification({ text: 'Character sheed updated' });
+      }
+    },
   },
 };
 </script>

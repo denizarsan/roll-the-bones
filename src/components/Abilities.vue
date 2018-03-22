@@ -3,9 +3,6 @@
     <v-flex v-for="ability in abilities" :key="ability.name" xs6 sm4 md2>
       <div class="ability white elevation-1 pa-3">
         <v-layout align-center column>
-          <v-btn v-if="isEditable" color="deep-purple" class="ability-edit my-0 mx-0" absolute right small flat icon @click="inEditMode[ability.name] = !inEditMode[ability.name]">
-            <v-icon small color="deep-purple">{{ inEditMode[ability.name] ? 'check' : 'edit' }}</v-icon>
-          </v-btn>
           <div class="ability-name title my-2">
             {{ ability.name }}
           </div>
@@ -14,7 +11,7 @@
               <v-btn
                 class="ml-0"
                 small icon
-                v-if="inEditMode[ability.name]"
+                v-if="isEditable"
                 @click="decrement(ability)"
                 :disabled="ability.value < 1"
               >
@@ -28,7 +25,7 @@
               <v-btn
                 class="mr-0"
                 small icon
-                v-if="inEditMode[ability.name]"
+                v-if="isEditable"
                 @click="increment(ability)"
                 :disabled="ability.value > 19"
               >

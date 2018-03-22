@@ -24,21 +24,18 @@
           Initiative
         </div>
         <v-layout align-center>
-          <v-btn small icon v-if="edit.initiative" @click="decrementInitiative" :disabled="initiativeBonus < 1">
+          <v-btn small icon v-if="isEditable" @click="decrementInitiative" :disabled="initiativeBonus < 1">
             <v-icon color="secondary">remove_circle</v-icon>
           </v-btn>
           <div class="subheading my-2">
             {{ initiative | signed }}
             <span v-if="initiativeBonus > 0">(+{{ initiativeBonus }})</span>
           </div>
-          <v-btn small icon v-if="edit.initiative" @click="incrementInitiative">
+          <v-btn small icon v-if="isEditable" @click="incrementInitiative">
             <v-icon color="secondary">add_circle</v-icon>
           </v-btn>
         </v-layout>
         <v-layout justify-center>
-          <v-btn v-if="isEditable" color="deep-purple" @click="edit.initiative = !edit.initiative" small flat icon>
-            <v-icon small>{{ edit.initiative ? 'check' : 'edit' }}</v-icon>
-          </v-btn>
           <v-btn color="primary" @click="copy(initiativeRoll)" small flat icon>
             <v-icon small>content_copy</v-icon>
           </v-btn>
@@ -54,21 +51,18 @@
           Spell Hit
         </div>
         <v-layout align-center>
-          <v-btn small icon v-if="edit.spellHit" @click="decrementSpellHit" :disabled="spellHitBonus < 1">
+          <v-btn small icon v-if="isEditable" @click="decrementSpellHit" :disabled="spellHitBonus < 1">
             <v-icon color="secondary">remove_circle</v-icon>
           </v-btn>
           <div class="subheading my-2">
             {{ spellHit | signed }}
             <span v-if="spellHitBonus > 0">(+{{ spellHitBonus }})</span>
           </div>
-          <v-btn small icon v-if="edit.spellHit" @click="incrementSpellHit">
+          <v-btn small icon v-if="isEditable" @click="incrementSpellHit">
             <v-icon color="secondary">add_circle</v-icon>
           </v-btn>
         </v-layout>
         <v-layout justify-center>
-          <v-btn v-if="isEditable" color="deep-purple" @click="edit.spellHit = !edit.spellHit" small flat icon>
-            <v-icon small>{{ edit.spellHit ? 'check' : 'edit' }}</v-icon>
-          </v-btn>
           <v-btn color="primary" @click="copy(spellHitRoll)" small flat icon>
             <v-icon small>content_copy</v-icon>
           </v-btn>
@@ -84,20 +78,17 @@
           Attack Hit
         </div>
         <v-layout align-center>
-          <v-btn small icon v-if="edit.attackHit" @click="decrementAttackHit">
+          <v-btn small icon v-if="isEditable" @click="decrementAttackHit">
             <v-icon color="secondary">remove_circle</v-icon>
           </v-btn>
           <div class="subheading my-2">
             {{ attackHitBonus | signed }}
           </div>
-          <v-btn small icon v-if="edit.attackHit" @click="incrementAttackHit">
+          <v-btn small icon v-if="isEditable" @click="incrementAttackHit">
             <v-icon color="secondary">add_circle</v-icon>
           </v-btn>
         </v-layout>
         <v-layout justify-center>
-          <v-btn v-if="isEditable" color="deep-purple" @click="edit.attackHit = !edit.attackHit" small flat icon>
-            <v-icon small>{{ edit.attackHit ? 'check' : 'edit' }}</v-icon>
-          </v-btn>
           <v-btn color="primary" @click="copy(attackHitRoll)" small flat icon>
             <v-icon small>content_copy</v-icon>
           </v-btn>

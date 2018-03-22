@@ -1,12 +1,9 @@
 <template>
   <v-flex class="property white elevation-1 pa-3">
-    <v-btn v-if="isEditable" color="deep-purple" class="property-edit my-0 mx-0" absolute right flat icon @click="edit = !edit">
-      <v-icon color="deep-purple">{{ edit ? 'check' : 'edit' }}</v-icon>
-    </v-btn>
-    <div class="display-1 text-xs-center">
+    <div v-if="!isEditable" class="display-1 text-xs-center my-3">
       {{ name }}, Lv. {{ level }} {{ klass }}
     </div>
-    <v-layout align-center class="mt-3 mx-3" v-if="edit">
+    <v-layout v-else align-center>
       <v-flex xs4>
         <v-text-field label="Name" :value="name" @input="updateName"></v-text-field>
       </v-flex>
