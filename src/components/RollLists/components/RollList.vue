@@ -6,23 +6,25 @@
       </v-layout>
       <template v-for="value in list">
         <v-list-tile avatar :key="value.name" class="list-item">
-          <v-list-tile-action v-if="editable">
-            <slot name="editSection" :value="value"/>
-          </v-list-tile-action>
           <v-list-tile-content>
             <v-list-tile-title>{{ value.name }}</v-list-tile-title>
             <v-list-tile-sub-title>{{ value.toString() }}</v-list-tile-sub-title>
           </v-list-tile-content>
-          <v-list-tile-action>
-            <v-btn color="primary" flat icon @click="$emit('copy', value)">
-              <v-icon color="primary">content_copy</v-icon>
-            </v-btn>
-          </v-list-tile-action>
-          <v-list-tile-action v-if="sendable">
-            <v-btn color="secondary" flat icon @click="$emit('send', value)">
-              <v-icon color="secondary">send</v-icon>
-            </v-btn>
-          </v-list-tile-action>
+          <template v-if="editable">
+            <slot name="editSection" :value="value"/>
+          </template>
+          <template v-else>
+            <v-list-tile-action>
+              <v-btn color="primary" flat icon @click="$emit('copy', value)">
+                <v-icon color="primary">content_copy</v-icon>
+              </v-btn>
+            </v-list-tile-action>
+            <v-list-tile-action v-if="sendable">
+              <v-btn color="secondary" flat icon @click="$emit('send', value)">
+                <v-icon color="secondary">send</v-icon>
+              </v-btn>
+            </v-list-tile-action>
+          </template>
         </v-list-tile>
       </template>
       <slot name="additionalValues"/>

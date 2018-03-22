@@ -120,6 +120,13 @@ const mutations = {
       save(state.character);
     }
   },
+  updateRoll(state, { oldRoll, newRoll }) {
+    const index = state.character.rolls.findIndex(roll => roll.name === oldRoll.name);
+    if (index > -1) {
+      state.character.rolls.splice(index, 1, newRoll);
+      save(state.character);
+    }
+  },
   incrementInitiative(state) {
     state.character.initiativeBonus += 1;
     save(state.character);
