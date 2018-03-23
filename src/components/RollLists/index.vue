@@ -8,11 +8,14 @@
       @copy="copy"
       @send="send"
     >
-      <v-checkbox
+      <v-list-tile-action
         slot="editSection"
         slot-scope="{ value }"
-        v-model="skills.find(skill => skill.name === value.name).proficient"
-        @click="onCheckboxClick(value)"/>
+      >
+        <v-checkbox
+          v-model="skills.find(skill => skill.name === value.name).proficient"
+          @click="onCheckboxClick(value)"/>
+      </v-list-tile-action>
     </RollList>
 
     <RollList
@@ -23,15 +26,21 @@
       @copy="copy"
       @send="send"
     >
-      <v-btn
+      <template
         slot="editSection"
         slot-scope="{ value }"
-        color="error"
-        flat
-        icon
-        @click="onRemoveClick(value)">
-        <v-icon color="error">remove_circle</v-icon>
-      </v-btn>
+      >
+        <v-list-tile-action>
+          <v-btn color="primary" flat icon @click="openRollDialog(value)">
+            <v-icon color="primary">edit</v-icon>
+          </v-btn>
+        </v-list-tile-action>
+        <v-list-tile-action>
+          <v-btn color="error" flat icon @click="onRemoveClick(value)">
+            <v-icon color="error">remove_circle</v-icon>
+          </v-btn>
+        </v-list-tile-action>
+      </template>
       <new-roll slot="additionalValues"></new-roll>
     </RollList>
 
@@ -42,6 +51,14 @@
       @copy="copy"
       @send="send"
     />
+
+    <roll-dialog
+      v-if="dialog"
+      @close="dialog = false"
+      @add="onEdit"
+      :roll="currentRoll"
+      title="Edit Roll"
+    />
   </v-layout>
 </template>
 
@@ -49,12 +66,14 @@
 import { mapGetters, mapMutations } from 'vuex';
 import NewRoll from './components/NewRoll';
 import RollList from './components/RollList';
+import RollDialog from './components/RollDialog';
 
 export default {
   name: 'RollLists',
   components: {
     NewRoll,
     RollList,
+    RollDialog,
   },
   computed: {
     ...mapGetters([
@@ -69,14 +88,12 @@ export default {
   },
   data() {
     return {
-      edit: {
-        skills: false,
-        rolls: false,
-      },
+      dialog: false,
+      currentRoll: null,
     };
   },
   methods: {
-    ...mapMutations(['showNotification', 'toggleSkill', 'removeRoll']),
+    ...mapMutations(['updateRoll', 'showNotification', 'toggleSkill', 'removeRoll']),
     send(roll) {
       this.line.sendRoll(roll);
     },
@@ -95,6 +112,14 @@ export default {
       if (this.rolls.length < 1) {
         this.edit = false;
       }
+    },
+    openRollDialog(currentRoll) {
+      this.currentRoll = currentRoll;
+      this.dialog = true;
+    },
+    onEdit(roll) {
+      this.updateRoll({ oldRoll: this.currentRoll, newRoll: roll });
+      this.dialog = false;
     },
   },
 };
