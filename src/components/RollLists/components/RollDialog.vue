@@ -5,7 +5,7 @@
         <v-btn icon @click="$emit('close')">
           <v-icon>close</v-icon>
         </v-btn>
-        <v-toolbar-title>New Roll</v-toolbar-title>
+        <v-toolbar-title>{{ title }}</v-toolbar-title>
       </v-toolbar>
       <v-card-text>
         <v-container>
@@ -73,6 +73,10 @@
     name: 'RollDialog',
     components: {},
     props: {
+      title: {
+        type: String,
+        required: true,
+      },
       roll: {
         type: Object,
         required: false,

@@ -12,6 +12,7 @@
       v-if="dialog"
       @close="close"
       @add="add"
+      title="New Roll"
     />
   </div>
 </template>

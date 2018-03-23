@@ -57,6 +57,7 @@
       @close="dialog = false"
       @add="onEdit"
       :roll="currentRoll"
+      title="Edit Roll"
     />
   </v-layout>
 </template>
