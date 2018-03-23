@@ -83,7 +83,7 @@
     },
     data() {
       return {
-        currentRoll: new Roll(this.roll.name, this.roll.dices, this.roll.modifiers),
+        currentRoll: new Roll(this.roll.name, this.roll.dices, this.roll.modifier),
       };
     },
     methods: {},
