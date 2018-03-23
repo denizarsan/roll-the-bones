@@ -82,12 +82,9 @@
       },
     },
     data() {
-      return {};
-    },
-    computed: {
-      currentRoll() {
-        return new Roll(this.roll.name, this.roll.dices, this.roll.modifiers);
-      },
+      return {
+        currentRoll: new Roll(this.roll.name, this.roll.dices, this.roll.modifiers),
+      };
     },
     methods: {},
   };
