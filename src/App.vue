@@ -4,6 +4,9 @@
     <v-toolbar dark color="primary" dense fixed clipped-right app>
       <v-toolbar-title>Roll the Bones</v-toolbar-title>
       <v-spacer></v-spacer>
+      <v-btn icon @click="toggleEditMode">
+        <v-icon>{{ isEditable ? 'lock_open' : 'lock' }}</v-icon>
+      </v-btn>
       <v-btn icon @click="toggleDrawer">
         <v-icon>menu</v-icon>
       </v-btn>
@@ -20,7 +23,7 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex';
+import { mapGetters, mapMutations } from 'vuex';
 
 import Sheet from './components/Sheet';
 import Drawer from './components/Drawer';
@@ -37,8 +40,25 @@ export default {
     LoadSave,
     Notification,
   },
+  computed: {
+    ...mapGetters(['isEditable']),
+  },
   methods: {
-    ...mapMutations(['toggleDrawer']),
+    ...mapMutations(['toggleDrawer', 'toggleEditMode', 'showNotification']),
   },
 };
 </script>
+
+<style>
+.appear-enter-active {
+  animation: appear .5s;
+}
+.appear-leave-active {
+  animation: appear .5s reverse;
+}
+
+@keyframes appear {
+  0%    { transform: scale(0); }
+  100%  { transform: scale(1); }
+}
+</style>

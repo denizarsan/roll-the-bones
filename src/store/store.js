@@ -54,10 +54,19 @@ const state = {
   character: load(),
   line: new Line(),
   notification: { show: false, text: null },
-  isEditable: true,
+  isEditable: false,
   loadSave: { show: false },
 };
 
+const getters = {
+  drawer: state => state.drawer,
+  auth: state => state.auth,
+  character: state => state.character,
+  line: state => state.line,
+  notification: state => state.notification,
+  isEditable: state => state.isEditable,
+  loadSave: state => state.loadSave,
+};
 
 /* eslint no-shadow: [2, { "allow": ["state"] }] */
 const mutations = {
@@ -108,6 +117,13 @@ const mutations = {
     const index = state.character.rolls.findIndex(roll => roll.name === payload.roll.name);
     if (index > -1) {
       state.character.rolls.splice(index, 1);
+      save(state.character);
+    }
+  },
+  updateRoll(state, { oldRoll, newRoll }) {
+    const index = state.character.rolls.findIndex(roll => roll.name === oldRoll.name);
+    if (index > -1) {
+      state.character.rolls.splice(index, 1, newRoll);
       save(state.character);
     }
   },
@@ -170,4 +186,4 @@ const mutations = {
   },
 };
 
-export default new Vuex.Store({ state, mutations });
+export default new Vuex.Store({ state, getters, mutations });

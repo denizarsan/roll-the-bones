@@ -49,32 +49,17 @@
           </v-list-tile-title>
         </v-list-tile-content>
       </v-list-tile>
-
-      <v-list-tile ripple @click="toggleEditMode">
-        <v-list-tile-action>
-          <v-icon>{{ isEditable ? 'lock_open' : 'lock' }}</v-icon>
-        </v-list-tile-action>
-        <v-list-tile-content>
-          <v-list-tile-title>
-            {{ isEditable ? 'Lock Sheet' : 'Edit Sheet' }}
-          </v-list-tile-title>
-        </v-list-tile-content>
-      </v-list-tile>
     </v-list>
   </v-navigation-drawer>
 </template>
 
 <script>
-import { mapState, mapMutations } from 'vuex';
+import { mapGetters, mapMutations } from 'vuex';
 
 export default {
   name: 'Drawer',
   computed: {
-    ...mapState({
-      drawer: state => state.drawer,
-      line: state => state.line,
-      isEditable: state => state.isEditable,
-    }),
+    ...mapGetters(['drawer', 'line']),
   },
   methods: {
     ...mapMutations(['showAuth', 'showLoadSave', 'disconnectLine', 'toggleEditMode']),

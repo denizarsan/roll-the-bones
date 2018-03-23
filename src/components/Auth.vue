@@ -140,17 +140,14 @@
 </template>
 
 <script>
-import { mapState, mapMutations } from 'vuex';
+import { mapGetters, mapMutations } from 'vuex';
 import { AUTH_PERIOD, AUTH_DELAY } from '@/utils/constants';
 import Line from '@/classes/Line';
 
 export default {
   name: 'Auth',
   computed: {
-    ...mapState({
-      auth: state => state.auth,
-      line: state => state.line,
-    }),
+    ...mapGetters(['auth', 'line']),
   },
   data() {
     return {
