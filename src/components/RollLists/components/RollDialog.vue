@@ -60,7 +60,7 @@
       <v-card-actions>
         <v-spacer></v-spacer>
         <v-btn color="secondary" @click="$emit('close')">Cancel</v-btn>
-        <v-btn color="primary" :disabled="!currentRoll.isComplete" @click="$emit('add', currentRoll)">Add</v-btn>
+        <v-btn color="primary" :disabled="!currentRoll.isComplete" @click="$emit('add', currentRoll)">Save</v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>
