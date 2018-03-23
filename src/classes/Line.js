@@ -28,6 +28,7 @@ export default class Line {
     this.isConnecting = true;
     return this.bot.login(token).then(() => {
       const guild = this.bot.guilds.get(id);
+
       this.server = new Server(guild.id, guild.name);
       this.channels = Array.from(guild.channels)
         .map(tuple => tuple[1])

@@ -11,8 +11,7 @@
           </v-btn>
         </transition>
         <div class="subheading my-2">
-          <slot name="value" v-if="!value"/>
-          <template v-else>{{value}}</template>
+          {{ value }}
         </div>
         <transition name="appear">
           <v-btn small icon v-if="editable" @click="$emit('increment')" :disabled="isIncrementDisabled">

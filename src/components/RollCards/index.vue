@@ -78,15 +78,6 @@ export default {
       return `${kind} ${signedSpaced(modifier)}`;
     },
   },
-  data() {
-    return {
-      edit: {
-        initiative: false,
-        spellHit: false,
-        attackHit: false,
-      },
-    };
-  },
   methods: {
     ...mapMutations([
       'showNotification',

@@ -5,7 +5,9 @@
         <v-btn icon @click="$emit('close')">
           <v-icon>close</v-icon>
         </v-btn>
-        <v-toolbar-title>{{ title }}</v-toolbar-title>
+        <v-toolbar-title>
+          {{ title }}
+        </v-toolbar-title>
       </v-toolbar>
       <v-card-text>
         <v-container>
@@ -90,6 +92,5 @@
         currentRoll: new Roll(this.roll.name, this.roll.dices, this.roll.modifier),
       };
     },
-    methods: {},
   };
 </script>

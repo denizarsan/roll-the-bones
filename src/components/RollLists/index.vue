@@ -41,7 +41,8 @@
           </v-btn>
         </v-list-tile-action>
       </template>
-      <new-roll slot="additionalValues"></new-roll>
+      <v-divider v-if="rolls.length"></v-divider>
+      <new-roll></new-roll>
     </RollList>
 
     <RollList

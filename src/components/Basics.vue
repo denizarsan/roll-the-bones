@@ -1,6 +1,6 @@
 <template>
-  <v-flex class="property white elevation-1 pa-3">
-    <div v-if="!isEditable" class="display-1 text-xs-center my-3">
+  <v-flex class="property white elevation-1 px-3">
+    <div v-if="!isEditable" class="display-1 text-xs-center">
       {{ character.name }}, Lv. {{ character.level }} {{ character.class }}
     </div>
     <v-layout v-else align-center>
@@ -8,8 +8,8 @@
         <v-text-field
           label="Name"
           :value="character.name"
-          @input="updateName">
-      </v-text-field>
+          @input="updateName"
+        ></v-text-field>
       </v-flex>
       <v-flex xs4>
         <v-layout align-center justify-center>
@@ -79,10 +79,9 @@ export default {
 
 <style scoped>
 .property {
-  position: relative;
-}
-
-.property-edit {
-  top: 20px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 </style>

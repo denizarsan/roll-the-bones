@@ -4,7 +4,7 @@
     <v-toolbar dark color="primary" dense fixed clipped-right app>
       <v-toolbar-title>Roll the Bones</v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-btn icon @click="toggleEdit">
+      <v-btn icon @click="toggleEditMode">
         <v-icon>{{ isEditable ? 'lock_open' : 'lock' }}</v-icon>
       </v-btn>
       <v-btn icon @click="toggleDrawer">
@@ -45,12 +45,6 @@ export default {
   },
   methods: {
     ...mapMutations(['toggleDrawer', 'toggleEditMode', 'showNotification']),
-    toggleEdit() {
-      this.toggleEditMode();
-      if (!this.isEditable) {
-        this.showNotification({ text: 'Character sheed updated' });
-      }
-    },
   },
 };
 </script>
