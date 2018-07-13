@@ -27,7 +27,7 @@
                 small icon
                 v-if="isEditable"
                 @click="increment(ability)"
-                :disabled="ability.value > 19"
+                :disabled="ability.value > 29"
               >
                 <v-icon color="secondary">add_circle</v-icon>
               </v-btn>
