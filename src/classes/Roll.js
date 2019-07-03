@@ -31,6 +31,32 @@ export default class Roll {
     return this.dices.some(dice => dice.count > 0);
   }
 
+  roll() {
+    if (this.isRollable) {
+      let total = 0;
+      let result = this.dices
+        .map((dice) => {
+          const rolls = [];
+          for (let i = 0; i < dice.count; i += 1) {
+            const value = Math.floor(Math.random() * parseInt(dice.kind.slice(1), 10)) + 1;
+            total += value;
+            rolls.push([dice.kind, value]);
+          }
+          return rolls;
+        })
+        .filter(l => l.length > 0)
+        .map(l => `${l.length}${l[0][0]} (${l.map(a => a[1]).join(', ')})`)
+        .join(' + ');
+
+      total += this.modifier;
+      result = `${result} ${this.modifierToString}`;
+
+      return { result, total };
+    }
+
+    return 0;
+  }
+
   toString() {
     const dicesStr = this.dices.filter(dice => dice.count > 0)
                           .map(dice => `${dice.count}${dice.kind}`)

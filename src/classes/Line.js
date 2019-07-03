@@ -58,6 +58,7 @@ export default class Line {
   }
 
   sendRoll(roll) {
-    this.send(`${roll.toString()} :robot: ${this.user.username} | ${roll.name}`);
+    const { result, total } = roll.roll();
+    this.send(`**${this.user.username} | ${roll.name} :game_die:**\n_${roll.toString()}_\n**Result:** ${result}\n**Total:** ${total}`);
   }
 }

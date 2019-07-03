@@ -1,7 +1,7 @@
 {
   "name": "roll-the-bones",
   "version": "1.0.0",
-  "description": "A simple roll generator for D&D that integrates with Discord bot Avrae",
+  "description": "A simple roll generator for D&D, integrates with Discord",
   "author": "Deniz Arsan <deniz.arsan@gmail.com>",
   "private": true,
   "scripts": {
